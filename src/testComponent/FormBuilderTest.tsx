@@ -80,6 +80,7 @@ export default function FormBuilderTest<T extends FieldValues>({
                   <div
                     key={`${input.name}-${index}`}
                     className="group relative space-y-2 flex-1"
+                    
                   >
                     {input.element !== undefined &&
                     input.element === "input" ? (

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { InputProps } from "../types/InputProps";
+
 export default function AddInput({
   type,
   label,
@@ -13,27 +14,65 @@ export default function AddInput({
   deleteIndex,
   disabled,
   pattern,
-  index,placeholder
+  index,
+  placeholder,
 }: InputProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const dealWithMenu = () => {
-    if (isMenuOpen) {
-      setIsMenuOpen(false);
-    }
-  };
-  const [inputValue, setInputValue] = useState(label || ""); // Initialize with label value if it exists
+  const [inputValue, setInputValue] = useState(label || "");
+  const [transform, setTransform] = useState({ x: 0, y: 0 });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value); // Update input value
+    setInputValue(e.target.value);
   };
+
   const regPattern = pattern
     ? typeof pattern === "string"
       ? new RegExp(pattern)
       : { value: new RegExp(pattern.value), message: pattern.message }
     : undefined;
 
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+    e.dataTransfer.setData("text/plain", index.toString());
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const draggedIndex = parseInt(e.dataTransfer.getData("text/plain"));
+    if (draggedIndex !== index) {
+      const offsetX =
+        e.clientX - parseInt(e.dataTransfer.getData("dragOffsetX"));
+      const offsetY =
+        e.clientY - parseInt(e.dataTransfer.getData("dragOffsetY"));
+
+      setTransform({ x: offsetX, y: offsetY });
+    }
+  };
   return (
-    <div className="relative" onClick={dealWithMenu}>
+    <div
+      className="relative"
+      draggable="true"
+      onDragStart={(e) => {
+        e.dataTransfer.setData(
+          "dragOffsetX",
+          (e.clientX - e.currentTarget.getBoundingClientRect().left).toString()
+        );
+        e.dataTransfer.setData(
+          "dragOffsetY",
+          (e.clientY - e.currentTarget.getBoundingClientRect().top).toString()
+        );
+        handleDragStart(e);
+      }}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
+      style={{
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+      }}
+    >
+      {/* Drag icon */}
       <button
         type="button"
         className="absolute -left-5 flex-none mt-3 cursor-grab duration-150
@@ -46,9 +85,9 @@ export default function AddInput({
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           className="lucide lucide-grip-vertical w-5 h-5"
         >
           <circle cx="9" cy="12" r="1"></circle>
@@ -59,7 +98,6 @@ export default function AddInput({
           <circle cx="15" cy="19" r="1"></circle>
         </svg>
       </button>
-
       <div
         className="absolute w-6 inline-block text-right h-fit top-0 bottom-0
        translate-y-[50%] my-auto -right-6 opacity-0 group-hover:opacity-100"
@@ -105,36 +143,44 @@ export default function AddInput({
             <li
               className="inline-flex items-center whitespace-nowrap font-medium  py-2  px-4 hover:bg-gray-100 cursor-pointer"
               onClick={() => {
-                // Add your delete logic here
+                
                 deleteIndex(index);
                 console.log("Delete option clicked");
               }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className=" mr-2 lucide lucide-trash w-4 h-4"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className=" mr-2 lucide lucide-trash w-4 h-4"
+              >
+                <path d="M3 6h18"></path>
+                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+              </svg>
               Delete
             </li>
           </ul>
         </div>
       )}
       <label
-        onClick={() => dealWithMenu}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed text-zinc-700"
       >
-        {label   }
+        {label}
       </label>
       <input
         id={name}
         name={name}
         placeholder={placeholder}
-        {...register(name, {
-          required,
-          minLength,
-          maxLength,
-          disabled,
-          min,
-          pattern: regPattern,
-          max,
-        })}
+        value={inputValue}
+        onChange={handleInputChange}
         className="flex h-10 w-full text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:bg-white border border-zinc-200 duration-100 placeholder:text-zinc-400 ring-2 ring-transparent focus:bg-white focus-visible:ring-indigo-400 shadow-sm rounded-lg py-2 px-3"
         type={type}
         autoComplete="on"
