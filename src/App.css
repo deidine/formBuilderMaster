@@ -1,0 +1,26 @@
+.btn {
+  @apply items-center whitespace-nowrap bg-slate-500  text-sm font-medium ring-offset-white
+    transition-colors focus-visible:outline-none focus-visible:ring-zinc-950
+    disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-zinc-950
+    dark:focus-visible:ring-zinc-300 border border-zinc-200 text-white
+    hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-950
+    dark:hover:bg-zinc-800 dark:hover:text-zinc-50 h-10 px-4 py-2 outline-none
+    focus-visible:ring-0 focus-visible:ring-offset-0 w-full flex justify-center gap-3
+  dark:text-zinc-300 rounded-lg;
+}
+
+.sbmtBtn {
+  @apply inline-flex items-center justify-center
+    whitespace-nowrap text-sm font-medium ring-offset-white
+    transition-colors focus-visible:outline-none focus-visible:ring-2
+    focus-visible:ring-zinc-950 focus-visible:ring-offset-2
+    disabled:pointer-events-none disabled:opacity-50
+    dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300
+    hover:bg-zinc-900/90 h-10 w-full bg-zinc-800 text-zinc-50
+    active:scale-[0.99] duration-200 focus-visible:bg-none
+    dark:bg-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-700
+    shadow-sm rounded-lg py-2 px-3;
+}
+.btn2 {
+  @apply inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300;
+}

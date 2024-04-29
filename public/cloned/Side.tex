@@ -1,0 +1,268 @@
+import React from "react";
+
+  function Side() {
+  return (
+    <>
+      <aside className="relative w-full">
+        <div className="fixed z-10 inset-x-0 w-full h-full bg-white px-4 border-l xl:inset-x-[unset] xl:block xl:max-w-[19rem] xl:top-auto xl:px-0 hidden">
+          <div className="h-full overflow-y-auto pb-32 text-gray-400 text-sm p-8 space-y-4">
+            <div dir="ltr" data-orientation="horizontal" className="w-full">
+              <div
+                role="tablist"
+                aria-orientation="horizontal"
+                className="inline-flex h-10 items-center justify-center p-1 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400 w-full rounded-lg text-sm bg-zinc-50"
+                data-orientation="horizontal"
+               
+              >
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="radix-:Rf7qja:-content-light"
+                  data-state="active"
+                  id="radix-:Rf7qja:-trigger-light"
+                  className="inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:shadow-sm dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 dark:data-[state=active]:bg-zinc-950 dark:data-[state=active]:text-zinc-50 w-full rounded-lg gap-x-2 data-[state=active]:border data-[state=active]:text-zinc-700"
+                  data-orientation="horizontal"
+                  data-radix-collection-item=""
+                >
+                  {" "}
+                  Light
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="radix-:Rf7qja:-content-dark"
+                  data-state="inactive"
+                  id="radix-:Rf7qja:-trigger-dark"
+                  className="inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:shadow-sm dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 dark:data-[state=active]:bg-zinc-950 dark:data-[state=active]:text-zinc-50 w-full rounded-lg gap-x-2 data-[state=active]:border data-[state=active]:text-zinc-700"
+                  data-orientation="horizontal"
+                  data-radix-collection-item=""
+                >
+                  {" "}
+                  Dark
+                </button>
+              </div>
+              <div className="mt-6">
+                <div
+                  data-state="active"
+                  data-orientation="horizontal"
+                  role="tabpanel"
+                  aria-labelledby="radix-:Rf7qja:-trigger-light"
+                  id="radix-:Rf7qja:-content-light"
+                  className="mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 space-y-4"
+                  
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-x-2">
+                      {" "}
+                      <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                        Button Background
+                      </label>
+                    </div>
+                    <button
+                      className="inline-flex items-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 border border-zinc-200 bg-white hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 h-9 px-3 w-full justify-start rounded-lg shadow-sm gap-x-3"
+                      type="button"
+                      id="radix-:Rhdf7qja:"
+                      aria-haspopup="menu"
+                      aria-expanded="false"
+                      data-state="closed"
+                    >
+                      <div className="w-5 h-5 rounded-md border bg-zinc-800"></div>
+                      <span>bg-zinc-800</span>
+                    </button>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-x-2">
+                      {" "}
+                      <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                        Button Color
+                      </label>
+                    </div>
+                    <button
+                      className="inline-flex items-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 border border-zinc-200 bg-white hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 h-9 px-3 w-full justify-start rounded-lg shadow-sm gap-x-3"
+                      type="button"
+                      id="radix-:Ridf7qja:"
+                      aria-haspopup="menu"
+                      aria-expanded="false"
+                      data-state="closed"
+                    >
+                      <div className="w-5 h-5 rounded-md border bg-zinc-50"></div>
+                      <span>text-zinc-50</span>
+                    </button>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-x-2">
+                      {" "}
+                      <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                        Border
+                      </label>
+                    </div>
+                    <div className="inline-flex items-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 border border-zinc-200 bg-white hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 h-9 px-3 w-full justify-start rounded-lg shadow-sm gap-x-3 pr-0">
+                      <button
+                        className="inline-flex items-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 border border-zinc-200 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 w-full justify-start rounded-lg gap-x-3 border-none shadow-none h-full px-0 bg-transparent focus-visible:ring-0 focus-visible:bg-transparent focus-visible:ring-offset-0"
+                        type="button"
+                        id="radix-:R1jdf7qja:"
+                        aria-haspopup="menu"
+                        aria-expanded="false"
+                        data-state="closed"
+                      >
+                        <div className="w-5 h-5 rounded-md border bg-zinc-200"></div>
+                        <span>border-zinc-200</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-x-2">
+                      {" "}
+                      <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                        Fields Background
+                      </label>
+                    </div>
+                    <button
+                      className="inline-flex items-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 border border-zinc-200 bg-white hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 h-9 px-3 w-full justify-start rounded-lg shadow-sm gap-x-3"
+                      type="button"
+                      id="radix-:Rkdf7qja:"
+                      aria-haspopup="menu"
+                      aria-expanded="false"
+                      data-state="closed"
+                    >
+                      <div className="w-5 h-5 rounded-md border bg-white"></div>
+                      <span>bg-white</span>
+                    </button>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-x-2">
+                      {" "}
+                      <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                        Fields Effect
+                      </label>
+                    </div>
+                    <button
+                      className="inline-flex items-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 border border-zinc-200 bg-white hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 h-9 px-3 w-full justify-start rounded-lg shadow-sm gap-x-3"
+                      type="button"
+                      id="radix-:Rldf7qja:"
+                      aria-haspopup="menu"
+                      aria-expanded="false"
+                      data-state="closed"
+                    >
+                      <div className="w-6 h-6 rounded-md bg-zinc-50 border flex items-center justify-center">
+                        {" "}
+                      </div>
+                      <span>Hover</span>
+                    </button>
+                    <button
+                      className="inline-flex items-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 border border-zinc-200 bg-white hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 h-9 px-3 w-full justify-start rounded-lg shadow-sm gap-x-3"
+                      type="button"
+                      id="radix-:Rtdf7qja:"
+                      aria-haspopup="menu"
+                      aria-expanded="false"
+                      data-state="closed"
+                    >
+                      <div className="w-6 h-6 rounded-md bg-zinc-50 border flex items-center justify-center">
+                        {" "}
+                      </div>
+                      <span>Focus</span>
+                    </button>
+                  </div>
+                </div>
+                <div
+                  data-state="inactive"
+                  data-orientation="horizontal"
+                  role="tabpanel"
+                  aria-labelledby="radix-:Rf7qja:-trigger-dark"
+                  id="radix-:Rf7qja:-content-dark"
+                  className="mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 space-y-4"
+                ></div>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <div className="flex items-center gap-x-2">
+                {" "}
+                <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Shadow
+                </label>
+              </div>
+              <button
+                className="inline-flex items-center whitespace-nowrap text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 border border-zinc-200 bg-white hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 h-9 px-3 w-full justify-start rounded-lg shadow-sm gap-x-3"
+                type="button"
+                id="radix-:Rhn7qja:"
+                aria-haspopup="menu"
+                aria-expanded="false"
+                data-state="closed"
+              >
+                <div className="w-5 h-5 rounded-md bg-white border shadow-sm"></div>
+                <span>shadow-sm</span>
+              </button>
+            </div>
+            <div className="flex items-center gap-x-2">
+              {" "}
+              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Padding
+              </label>
+            </div>
+            <div className="flex gap-x-3">
+              <button
+                type="button"
+                role="combobox"
+                aria-controls="radix-:Rbn7qja:"
+                aria-expanded="false"
+                aria-autocomplete="none"
+                dir="ltr"
+                data-state="closed"
+                className="flex items-center border border-zinc-200 bg-white px-3 py-2 text-sm placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-200 focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 [&amp;>span]:line-clamp-1 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-950 dark:placeholder:text-zinc-400 dark:focus:ring-zinc-300 w-full justify-start rounded-lg shadow-sm gap-x-3 h-9"
+              >
+                <div className="w-full text-left flex gap-x-3 items-center">
+                  <span className="inline-block pr-3 border-r text-sm font-medium text-zinc-700">
+                    X
+                  </span>
+                  <span >3</span>
+                </div>{" "}
+              </button>
+              <button
+                type="button"
+                role="combobox"
+                aria-controls="radix-:Rjn7qja:"
+                aria-expanded="false"
+                aria-autocomplete="none"
+                dir="ltr"
+                data-state="closed"
+                className="flex items-center border border-zinc-200 bg-white px-3 py-2 text-sm placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-200 focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 [&amp;>span]:line-clamp-1 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-950 dark:placeholder:text-zinc-400 dark:focus:ring-zinc-300 w-full justify-start rounded-lg shadow-sm gap-x-3 h-9"
+              >
+                <div className="w-full text-left flex gap-x-3 items-center">
+                  <span className="inline-block pr-3 border-r text-sm font-medium text-zinc-700">
+                    Y
+                  </span>
+                  <span >2</span>
+                </div>{" "}
+              </button>
+            </div>
+            <div className="space-y-3">
+              <div className="flex items-center gap-x-2">
+                {" "}
+                <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Radius
+                </label>
+              </div>
+              <button
+                type="button"
+                role="combobox"
+                aria-controls="radix-:Rkn7qja:"
+                aria-expanded="false"
+                aria-autocomplete="none"
+                dir="ltr"
+                data-state="closed"
+                className="flex items-center border border-zinc-200 bg-white px-3 py-2 text-sm placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-200 focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 [&amp;>span]:line-clamp-1 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-950 dark:placeholder:text-zinc-400 dark:focus:ring-zinc-300 w-full justify-start rounded-lg shadow-sm gap-x-3 h-9"
+              >
+                <div className="w-full text-left">
+                  <span >rounded-lg</span>
+                </div>{" "}
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </>
+  );
+}
+export default Side;
