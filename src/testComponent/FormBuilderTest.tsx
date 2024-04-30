@@ -13,17 +13,17 @@ export default function FormBuilderTest<T extends FieldValues>({
   title,
   className = "",
 }: Form) {
+  const [componentCode, setComponentCode] = useState("");
   const [alldata, setAllData] = useState(data);
   const [showModal, setShowModal] = useState(false);
-  const [previousData, setPreviousData] = useState([]);
-const [preview,setPreview]=useState(false);
+  const [preview, setPreview] = useState(false);
   const [inputType, setInputType] = useState("");
   const {
     register,
     handleSubmit,
     formState: { errors },
     getValues,
-  } = useForm<T>({mode:"all"});
+  } = useForm<T>({ mode: "all" });
 
   useEffect(() => {
     setAllData(data);
@@ -57,20 +57,45 @@ const [preview,setPreview]=useState(false);
     setAllData((prevData) => prevData.filter((_, i) => i !== index));
   };
 
-  const handleUndo = () => {
-    setAllData(previousData);
-    setPreviousData([]);
-  };
   const handlePreviewToggle = () => {
-    setPreview(!preview); // Toggle preview state
+    setPreview(!preview);
   };
 
   const onSubmit: SubmitHandler<T> = async (data: { [x: string]: any }) => {
-
-    if(preview){
-      console.log(data)
+    if (preview) {
+      console.log(data);
     }
   };
+  const generateComponentCode = () => {
+    const componentCode = alldata.map((input, index) => {
+      return `<AddInput
+          key={${index}}
+          type="${input.element}"
+          label="${input.label}"
+          name="${input.name}"
+          placeholder="${input}"
+          disabled={${input.disabled}}
+          index={${index}} />`;
+    });
+
+    const exportCode = `
+      import React from 'react';
+      import AddInput from './AddInput';
+
+      const GeneratedForm = () => {
+        return (
+          <form>
+            ${componentCode.join("\n")}
+          </form>
+        );
+      };
+
+      export default GeneratedForm;
+    `;
+
+    setComponentCode(exportCode);
+  };
+
   return (
     <>
       <TopBarTest />
@@ -103,22 +128,22 @@ const [preview,setPreview]=useState(false);
                           >
                             {input.element === "input" && (
                               <AddInput2
-                              preview={preview} // Pass the preview state
-                              deleteIndex={handleDeleteInput}
-                              required={true}
-                              {...input}
-                              index={index}
-                              label={index.toString()}
-                              register={register}
-                              getValues={getValues}
-                            />
+                                preview={preview} // Pass the preview state
+                                deleteIndex={handleDeleteInput}
+                                required={true}
+                                {...input}
+                                index={index}
+                                label={index.toString()}
+                                register={register}
+                                getValues={getValues}
+                              />
                             )}
                             <p>{input.name}</p>
                             {errors?.message && (
-                        <span className="text-sm text-red-500">
-                          {`${errors?.message}`}
-                        </span>
-                      )}
+                              <span className="text-sm text-red-500">
+                                {`${errors?.message}`}
+                              </span>
+                            )}
                           </div>
                         )}
                       </Draggable>
@@ -126,10 +151,14 @@ const [preview,setPreview]=useState(false);
                   })}
                   {provided.placeholder}
                   <button className="sbmtBtn" type="submit">
-                    <input
-                      className="outline-none bg-transparent w-full text-center"
-                      value="Submit"
-                    />
+                    {preview ? (
+                      "Submit "
+                    ) : (
+                      <input
+                        className="outline-none bg-transparent w-full text-center"
+                        value="Submit" 
+                      />
+                    )}
                   </button>
                 </div>
               )}
@@ -169,6 +198,14 @@ const [preview,setPreview]=useState(false);
         >
           {preview ? "Edit" : "Preview"}
         </button>
+
+        <button className="btn" type="button" onClick={generateComponentCode}>
+          Export Form
+        </button>
+        <div>
+          <h2>Generated React Component Code:</h2>
+          <pre>{componentCode}</pre>
+        </div>
       </div>
     </>
   );
@@ -181,7 +218,7 @@ export function TopBarTest() {
           <button className="btn2 border border-zinc-200 bg-white hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 h-9 px-3 rounded-lg text-zinc-800 w-14">
             Save
           </button>
-           
+
           <button className="btn2 hover:bg-zinc-900/90 h-9 px-3 rounded-lg border bg-zinc-100 text-zinc-800 hover:text-white">
             Publish
           </button>
