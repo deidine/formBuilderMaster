@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputProps } from "../types/InputProps";
-
 export default function AddInput({
   type,
   label,
@@ -15,14 +14,14 @@ export default function AddInput({
   disabled,
   pattern,
   index,
+  preview,
   placeholder,
 }: InputProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(label || "");
-  const [transform, setTransform] = useState({ x: 0, y: 0 });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+  const dealWithMenu = () => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
   };
 
   const regPattern = pattern
@@ -31,48 +30,8 @@ export default function AddInput({
       : { value: new RegExp(pattern.value), message: pattern.message }
     : undefined;
 
-  const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-    e.dataTransfer.setData("text/plain", index.toString());
-  };
-
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-  };
-
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const draggedIndex = parseInt(e.dataTransfer.getData("text/plain"));
-    if (draggedIndex !== index) {
-      const offsetX =
-        e.clientX - parseInt(e.dataTransfer.getData("dragOffsetX"));
-      const offsetY =
-        e.clientY - parseInt(e.dataTransfer.getData("dragOffsetY"));
-
-      setTransform({ x: offsetX, y: offsetY });
-    }
-  };
   return (
-    <div
-      className="relative"
-      draggable="true"
-      onDragStart={(e) => {
-        e.dataTransfer.setData(
-          "dragOffsetX",
-          (e.clientX - e.currentTarget.getBoundingClientRect().left).toString()
-        );
-        e.dataTransfer.setData(
-          "dragOffsetY",
-          (e.clientY - e.currentTarget.getBoundingClientRect().top).toString()
-        );
-        handleDragStart(e);
-      }}
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
-      style={{
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      }}
-    >
-      {/* Drag icon */}
+    <div className="relative" onClick={dealWithMenu}>
       <button
         type="button"
         className="absolute -left-5 flex-none mt-3 cursor-grab duration-150
@@ -85,9 +44,9 @@ export default function AddInput({
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
           className="lucide lucide-grip-vertical w-5 h-5"
         >
           <circle cx="9" cy="12" r="1"></circle>
@@ -98,6 +57,7 @@ export default function AddInput({
           <circle cx="15" cy="19" r="1"></circle>
         </svg>
       </button>
+
       <div
         className="absolute w-6 inline-block text-right h-fit top-0 bottom-0
        translate-y-[50%] my-auto -right-6 opacity-0 group-hover:opacity-100"
@@ -143,7 +103,7 @@ export default function AddInput({
             <li
               className="inline-flex items-center whitespace-nowrap font-medium  py-2  px-4 hover:bg-gray-100 cursor-pointer"
               onClick={() => {
-                
+                // Add your delete logic here
                 deleteIndex(index);
                 console.log("Delete option clicked");
               }}
@@ -155,9 +115,9 @@ export default function AddInput({
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
                 className=" mr-2 lucide lucide-trash w-4 h-4"
               >
                 <path d="M3 6h18"></path>
@@ -170,7 +130,7 @@ export default function AddInput({
         </div>
       )}
       <label
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        onClick={() => dealWithMenu}
         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed text-zinc-700"
       >
         {label}
@@ -179,12 +139,25 @@ export default function AddInput({
         id={name}
         name={name}
         placeholder={placeholder}
-        value={inputValue}
-        onChange={handleInputChange}
+        {...(preview
+          ? register(name, {
+              required: {
+                value: required, // Pass the required prop to the value
+                message: "Name is required",
+              },
+              minLength,
+              maxLength,
+              disabled,
+              min,
+              pattern: regPattern,
+              max,
+            })
+          : {})}
         className="flex h-10 w-full text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:bg-white border border-zinc-200 duration-100 placeholder:text-zinc-400 ring-2 ring-transparent focus:bg-white focus-visible:ring-indigo-400 shadow-sm rounded-lg py-2 px-3"
         type={type}
         autoComplete="on"
       />
+        
     </div>
   );
 }

@@ -2,16 +2,17 @@ import "tailwindcss/tailwind.css";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import Home from "./pages/Home";
 import FormBuilderTest from "./testComponent/FormBuilderTest";
-
+ 
 function App() {
   return (
     <Router>
       <Routes>
+       
         <Route
           path="/"
           element={
             <FormBuilderTest
-              data={[ ]}
+              data={[  ]}
             />
           }
         />

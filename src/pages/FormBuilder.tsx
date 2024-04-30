@@ -88,7 +88,7 @@ export default function FormBuilder<T extends FieldValues>({
                       <></>
                     ) : (
                       <>
-                        <AddInput
+                        {/* <AddInput
                           deleteIndex={function (index: number): void {
                             handleDeleteInput(index);
                           }}
@@ -97,7 +97,7 @@ export default function FormBuilder<T extends FieldValues>({
                           label={input.label}
                           register={register}
                           getValues={getValues}
-                        />
+                        /> */}
                         {previousData.length > 0 && (
                           <button
                             className="btn"
